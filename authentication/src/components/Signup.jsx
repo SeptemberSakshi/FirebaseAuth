@@ -21,37 +21,39 @@ const Signup = () => {
     setError("");
     try {
       await signUp(email, password, address, mobile);
-      navigate("/");
+      await postData(e)
+      navigate("/");      
+
     } catch (err) {
       setError(err.message);
     }
   };
 
-//   const postData = async (e) => {
-//          e.preventDefault();
+  const postData = async (e) => {
+         e.preventDefault();
 
-//     const response = await fetch("https://fir-authentication-cb112-default-rtdb.firebaseio.com/gstscannerdb.json",
-//     {
-//        method : "POST",
-//        headers : {
-//         "Content-Type":"authentication/json"
-//        },
-//        body:JSON.stringify({
-//         email,
-//         password,
-//         mobile,
-//         address
+    const response = await fetch("https://fir-authentication-cb112-default-rtdb.firebaseio.com/gstscannerdb.json",
+    {
+       method : "POST",
+       headers : {
+        "Content-Type":"authentication/json"
+       },
+       body:JSON.stringify({
+        email,
+        password,
+        mobile,
+        address
 
-//        })
+       })
 
-//          })
+         })
     
-//   }
+  }
 
-  return (
+ return (
     <>
       <div className="p-4 box">
-        <h2 className="mb-3">GST SCANNER : SIGNUP</h2>
+        <h2 className="mb-3">CREATE AN ACCOUNT</h2>
         {error && <Alert variant="danger">{error}</Alert>}
 
 
@@ -92,8 +94,7 @@ const Signup = () => {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Control
               type="address"
-              name="address "
-             
+              name="address"
               placeholder="Address"
               onChange={(e) => setAddress(e.target.value)}
               required

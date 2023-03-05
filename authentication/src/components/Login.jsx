@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "../context/UserAuthContext";
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -68,11 +69,23 @@ const Login = () => {
               Log In
             </Button>
           </div>
+          <br/>
+    
+    <Link to ="/PhoneSignUp">
+    <div className="d-grid gap-2">
+            <Button variant="success" type="Submit">
+              Sign Up with Phone
+            </Button>
+          </div>
+    </Link>
+          
+
         </Form>
         <hr />
+
         <div>
-          <GoogleButton
-            className="g-btn"
+          <GoogleButton  
+            className="g-btn  ml-3"
             type="dark"
             onClick={handleGoogleSignIn}
           />

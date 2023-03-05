@@ -6,6 +6,7 @@ import { useUserAuth } from "../context/UserAuthContext";
 const Home = () => {
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
+
   const handleLogout = async () => {
     try {
       await logOut();
@@ -14,6 +15,7 @@ const Home = () => {
       console.log(error.message);
     }
   };
+
   const address = sessionStorage.getItem("address")
   return (
     <>
@@ -26,10 +28,10 @@ const Home = () => {
         
         {console.log("address",address)}
        
-     
-
       </div>
+
       <div className="d-grid gap-2">
+        
         <Button variant="primary" onClick={handleLogout}>
           Log out
         </Button>
