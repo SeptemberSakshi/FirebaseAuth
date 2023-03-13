@@ -1,10 +1,9 @@
-
 import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth";
+import {getFirestore,collection , getDocs} from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
@@ -19,9 +18,28 @@ const firebaseConfig = {
   measurementId: "G-0YMNRX6VC6"
 };
 
-
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+//init service 
+const db = getFirestore();
+
+//collection ref
+const colRef =  collection(db,'users')
+
+//get collection data
+getDocs(colRef)
+.then((snapshot)=>{
+  let Users =[]
+  snapshot.docs.forEach((doc)=>{
+    Users.push({...doc.data(),id:doc.id})
+  })
+  console.log(Users)
+})
+.catch(err => {
+  console.log(err.message)
+})
+
 export const auth = getAuth(app);
 export default app;
+
